@@ -14,7 +14,10 @@
 
 package snap
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 var (
 	snapMarshallingSec = prometheus.NewHistogram(prometheus.HistogramOpts{
@@ -74,9 +77,9 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(snapMarshallingSec)
-	prometheus.MustRegister(snapSaveSec)
-	prometheus.MustRegister(snapFsyncSec)
-	prometheus.MustRegister(snapDBSaveSec)
-	prometheus.MustRegister(snapDBFsyncSec)
+	metrics.MustRegister(snapMarshallingSec)
+	metrics.MustRegister(snapSaveSec)
+	metrics.MustRegister(snapFsyncSec)
+	metrics.MustRegister(snapDBSaveSec)
+	metrics.MustRegister(snapDBFsyncSec)
 }

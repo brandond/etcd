@@ -26,11 +26,11 @@ import (
 	"time"
 
 	"go.etcd.io/etcd/client/pkg/v3/transport"
-	"go.etcd.io/etcd/client/v3"
+	clientv3 "go.etcd.io/etcd/client/v3"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/tests/v3/integration"
 
 	grpcprom "github.com/grpc-ecosystem/go-grpc-prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"google.golang.org/grpc"
 )
 
@@ -42,7 +42,7 @@ func TestV3ClientMetrics(t *testing.T) {
 		ln   net.Listener
 	)
 
-	srv := &http.Server{Handler: promhttp.Handler()}
+	srv := &http.Server{Handler: metrics.Handler()}
 	srv.SetKeepAlivesEnabled(false)
 
 	ln, err := transport.NewUnixListener(addr)

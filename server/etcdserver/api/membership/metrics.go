@@ -14,7 +14,10 @@
 
 package membership
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 var (
 	ClusterVersionMetrics = prometheus.NewGaugeVec(prometheus.GaugeOpts{
@@ -27,5 +30,5 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(ClusterVersionMetrics)
+	metrics.MustRegister(ClusterVersionMetrics)
 }

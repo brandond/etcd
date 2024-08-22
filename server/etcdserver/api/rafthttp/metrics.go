@@ -14,7 +14,10 @@
 
 package rafthttp
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 var (
 	activePeers = prometheus.NewGaugeVec(prometheus.GaugeOpts{
@@ -166,21 +169,21 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(activePeers)
-	prometheus.MustRegister(disconnectedPeers)
-	prometheus.MustRegister(sentBytes)
-	prometheus.MustRegister(receivedBytes)
-	prometheus.MustRegister(sentFailures)
-	prometheus.MustRegister(recvFailures)
+	metrics.MustRegister(activePeers)
+	metrics.MustRegister(disconnectedPeers)
+	metrics.MustRegister(sentBytes)
+	metrics.MustRegister(receivedBytes)
+	metrics.MustRegister(sentFailures)
+	metrics.MustRegister(recvFailures)
 
-	prometheus.MustRegister(snapshotSend)
-	prometheus.MustRegister(snapshotSendInflights)
-	prometheus.MustRegister(snapshotSendFailures)
-	prometheus.MustRegister(snapshotSendSeconds)
-	prometheus.MustRegister(snapshotReceive)
-	prometheus.MustRegister(snapshotReceiveInflights)
-	prometheus.MustRegister(snapshotReceiveFailures)
-	prometheus.MustRegister(snapshotReceiveSeconds)
+	metrics.MustRegister(snapshotSend)
+	metrics.MustRegister(snapshotSendInflights)
+	metrics.MustRegister(snapshotSendFailures)
+	metrics.MustRegister(snapshotSendSeconds)
+	metrics.MustRegister(snapshotReceive)
+	metrics.MustRegister(snapshotReceiveInflights)
+	metrics.MustRegister(snapshotReceiveFailures)
+	metrics.MustRegister(snapshotReceiveSeconds)
 
-	prometheus.MustRegister(rttSec)
+	metrics.MustRegister(rttSec)
 }

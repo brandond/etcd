@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 var (
@@ -69,10 +70,10 @@ const (
 )
 
 func init() {
-	prometheus.MustRegister(requestsIncoming)
-	prometheus.MustRegister(requestsHandled)
-	prometheus.MustRegister(requestsDropped)
-	prometheus.MustRegister(requestsHandlingSec)
+	metrics.MustRegister(requestsIncoming)
+	metrics.MustRegister(requestsHandled)
+	metrics.MustRegister(requestsDropped)
+	metrics.MustRegister(requestsHandlingSec)
 }
 
 func reportIncomingRequest(request *http.Request) {

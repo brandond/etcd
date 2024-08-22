@@ -14,7 +14,10 @@
 
 package v2store
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 // Set of raw Prometheus metrics.
 // Labels
@@ -89,10 +92,10 @@ func init() {
 		// store and store_test packages; ignore second attempts.
 		return
 	}
-	prometheus.MustRegister(writeCounter)
-	prometheus.MustRegister(expireCounter)
-	prometheus.MustRegister(watchRequests)
-	prometheus.MustRegister(watcherCount)
+	metrics.MustRegister(writeCounter)
+	metrics.MustRegister(expireCounter)
+	metrics.MustRegister(watchRequests)
+	metrics.MustRegister(watcherCount)
 }
 
 func reportReadSuccess(readAction string) {

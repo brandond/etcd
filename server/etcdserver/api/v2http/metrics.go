@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"go.etcd.io/etcd/api/v3/etcdserverpb"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/server/v3/etcdserver/api/v2error"
 	"go.etcd.io/etcd/server/v3/etcdserver/api/v2http/httptypes"
 
@@ -57,9 +58,9 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(incomingEvents)
-	prometheus.MustRegister(failedEvents)
-	prometheus.MustRegister(successfulEventsHandlingSec)
+	metrics.MustRegister(incomingEvents)
+	metrics.MustRegister(failedEvents)
+	metrics.MustRegister(successfulEventsHandlingSec)
 }
 
 func reportRequestReceived(request etcdserverpb.Request) {

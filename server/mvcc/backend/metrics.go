@@ -14,7 +14,10 @@
 
 package backend
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 var (
 	commitSec = prometheus.NewHistogram(prometheus.HistogramOpts{
@@ -93,11 +96,11 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(commitSec)
-	prometheus.MustRegister(rebalanceSec)
-	prometheus.MustRegister(spillSec)
-	prometheus.MustRegister(writeSec)
-	prometheus.MustRegister(defragSec)
-	prometheus.MustRegister(snapshotTransferSec)
-	prometheus.MustRegister(isDefragActive)
+	metrics.MustRegister(commitSec)
+	metrics.MustRegister(rebalanceSec)
+	metrics.MustRegister(spillSec)
+	metrics.MustRegister(writeSec)
+	metrics.MustRegister(defragSec)
+	metrics.MustRegister(snapshotTransferSec)
+	metrics.MustRegister(isDefragActive)
 }

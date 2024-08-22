@@ -18,6 +18,7 @@ import (
 	"sync"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 var (
@@ -279,30 +280,30 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(rangeCounter)
-	prometheus.MustRegister(rangeCounterDebug)
-	prometheus.MustRegister(putCounter)
-	prometheus.MustRegister(deleteCounter)
-	prometheus.MustRegister(txnCounter)
-	prometheus.MustRegister(keysGauge)
-	prometheus.MustRegister(watchStreamGauge)
-	prometheus.MustRegister(watcherGauge)
-	prometheus.MustRegister(slowWatcherGauge)
-	prometheus.MustRegister(totalEventsCounter)
-	prometheus.MustRegister(pendingEventsGauge)
-	prometheus.MustRegister(indexCompactionPauseMs)
-	prometheus.MustRegister(dbCompactionPauseMs)
-	prometheus.MustRegister(dbCompactionTotalMs)
-	prometheus.MustRegister(dbCompactionLast)
-	prometheus.MustRegister(dbCompactionKeysCounter)
-	prometheus.MustRegister(dbTotalSize)
-	prometheus.MustRegister(dbTotalSizeInUse)
-	prometheus.MustRegister(dbOpenReadTxN)
-	prometheus.MustRegister(hashSec)
-	prometheus.MustRegister(hashRevSec)
-	prometheus.MustRegister(currentRev)
-	prometheus.MustRegister(compactRev)
-	prometheus.MustRegister(totalPutSizeGauge)
+	metrics.MustRegister(rangeCounter)
+	metrics.MustRegister(rangeCounterDebug)
+	metrics.MustRegister(putCounter)
+	metrics.MustRegister(deleteCounter)
+	metrics.MustRegister(txnCounter)
+	metrics.MustRegister(keysGauge)
+	metrics.MustRegister(watchStreamGauge)
+	metrics.MustRegister(watcherGauge)
+	metrics.MustRegister(slowWatcherGauge)
+	metrics.MustRegister(totalEventsCounter)
+	metrics.MustRegister(pendingEventsGauge)
+	metrics.MustRegister(indexCompactionPauseMs)
+	metrics.MustRegister(dbCompactionPauseMs)
+	metrics.MustRegister(dbCompactionTotalMs)
+	metrics.MustRegister(dbCompactionLast)
+	metrics.MustRegister(dbCompactionKeysCounter)
+	metrics.MustRegister(dbTotalSize)
+	metrics.MustRegister(dbTotalSizeInUse)
+	metrics.MustRegister(dbOpenReadTxN)
+	metrics.MustRegister(hashSec)
+	metrics.MustRegister(hashRevSec)
+	metrics.MustRegister(currentRev)
+	metrics.MustRegister(compactRev)
+	metrics.MustRegister(totalPutSizeGauge)
 }
 
 // ReportEventReceived reports that an event is received.

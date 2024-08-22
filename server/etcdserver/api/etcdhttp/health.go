@@ -32,6 +32,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	pb "go.etcd.io/etcd/api/v3/etcdserverpb"
 	"go.etcd.io/etcd/client/pkg/v3/types"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/raft/v3"
 	"go.etcd.io/etcd/server/v3/auth"
 	"go.etcd.io/etcd/server/v3/config"
@@ -157,10 +158,10 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(healthSuccess)
-	prometheus.MustRegister(healthFailed)
-	prometheus.MustRegister(healthCheckGauge)
-	prometheus.MustRegister(healthCheckCounter)
+	metrics.MustRegister(healthSuccess)
+	metrics.MustRegister(healthFailed)
+	metrics.MustRegister(healthCheckGauge)
+	metrics.MustRegister(healthCheckCounter)
 }
 
 // Health defines etcd server health status.

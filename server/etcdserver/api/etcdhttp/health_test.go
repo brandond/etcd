@@ -9,12 +9,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap/zaptest"
 
 	pb "go.etcd.io/etcd/api/v3/etcdserverpb"
 	"go.etcd.io/etcd/client/pkg/v3/testutil"
 	"go.etcd.io/etcd/client/pkg/v3/types"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/raft/v3"
 	"go.etcd.io/etcd/server/v3/auth"
 	"go.etcd.io/etcd/server/v3/config"
@@ -374,7 +374,8 @@ func checkMetrics(t *testing.T, url, checkName string, expectStatusCode int) {
 		expectedErrorCount = 1
 	}
 
-	gather, _ := prometheus.DefaultGatherer.Gather()
+	metrics.Register()
+	gather, _ := metrics.DefaultGatherer.Gather()
 	for _, mf := range gather {
 		name := *mf.Name
 		val := 0

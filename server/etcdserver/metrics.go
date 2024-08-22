@@ -19,6 +19,7 @@ import (
 	"time"
 
 	"go.etcd.io/etcd/api/v3/version"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/pkg/v3/runtime"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -178,29 +179,29 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(hasLeader)
-	prometheus.MustRegister(isLeader)
-	prometheus.MustRegister(leaderChanges)
-	prometheus.MustRegister(heartbeatSendFailures)
-	prometheus.MustRegister(slowApplies)
-	prometheus.MustRegister(applySnapshotInProgress)
-	prometheus.MustRegister(proposalsCommitted)
-	prometheus.MustRegister(proposalsApplied)
-	prometheus.MustRegister(proposalsPending)
-	prometheus.MustRegister(proposalsFailed)
-	prometheus.MustRegister(slowReadIndex)
-	prometheus.MustRegister(readIndexFailed)
-	prometheus.MustRegister(leaseExpired)
-	prometheus.MustRegister(quotaBackendBytes)
-	prometheus.MustRegister(currentVersion)
-	prometheus.MustRegister(currentGoVersion)
-	prometheus.MustRegister(serverID)
-	prometheus.MustRegister(isLearner)
-	prometheus.MustRegister(learnerPromoteSucceed)
-	prometheus.MustRegister(learnerPromoteFailed)
-	prometheus.MustRegister(fdUsed)
-	prometheus.MustRegister(fdLimit)
-	prometheus.MustRegister(applySec)
+	metrics.MustRegister(hasLeader)
+	metrics.MustRegister(isLeader)
+	metrics.MustRegister(leaderChanges)
+	metrics.MustRegister(heartbeatSendFailures)
+	metrics.MustRegister(slowApplies)
+	metrics.MustRegister(applySnapshotInProgress)
+	metrics.MustRegister(proposalsCommitted)
+	metrics.MustRegister(proposalsApplied)
+	metrics.MustRegister(proposalsPending)
+	metrics.MustRegister(proposalsFailed)
+	metrics.MustRegister(slowReadIndex)
+	metrics.MustRegister(readIndexFailed)
+	metrics.MustRegister(leaseExpired)
+	metrics.MustRegister(quotaBackendBytes)
+	metrics.MustRegister(currentVersion)
+	metrics.MustRegister(currentGoVersion)
+	metrics.MustRegister(serverID)
+	metrics.MustRegister(isLearner)
+	metrics.MustRegister(learnerPromoteSucceed)
+	metrics.MustRegister(learnerPromoteFailed)
+	metrics.MustRegister(fdUsed)
+	metrics.MustRegister(fdLimit)
+	metrics.MustRegister(applySec)
 
 	currentVersion.With(prometheus.Labels{
 		"server_version": version.Version,

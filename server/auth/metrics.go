@@ -18,6 +18,7 @@ import (
 	"sync"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 var (
@@ -39,5 +40,5 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(currentAuthRevision)
+	metrics.MustRegister(currentAuthRevision)
 }
