@@ -17,7 +17,7 @@ package etcdhttp
 import (
 	"net/http"
 
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 const (
@@ -27,5 +27,5 @@ const (
 
 // HandleMetrics registers prometheus handler on '/metrics'.
 func HandleMetrics(mux *http.ServeMux) {
-	mux.Handle(PathMetrics, promhttp.Handler())
+	mux.Handle(PathMetrics, metrics.Handler())
 }

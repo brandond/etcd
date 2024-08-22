@@ -16,6 +16,7 @@ package lease
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 var (
@@ -52,8 +53,8 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(leaseGranted)
-	prometheus.MustRegister(leaseRevoked)
-	prometheus.MustRegister(leaseRenewed)
-	prometheus.MustRegister(leaseTotalTTLs)
+	metrics.MustRegister(leaseGranted)
+	metrics.MustRegister(leaseRevoked)
+	metrics.MustRegister(leaseRenewed)
+	metrics.MustRegister(leaseTotalTTLs)
 }

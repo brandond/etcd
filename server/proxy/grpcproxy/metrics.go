@@ -23,7 +23,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 	"go.etcd.io/etcd/server/v3/etcdserver/api/etcdhttp"
 )
 
@@ -61,11 +61,11 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(watchersCoalescing)
-	prometheus.MustRegister(eventsCoalescing)
-	prometheus.MustRegister(cacheKeys)
-	prometheus.MustRegister(cacheHits)
-	prometheus.MustRegister(cachedMisses)
+	metrics.MustRegister(watchersCoalescing)
+	metrics.MustRegister(eventsCoalescing)
+	metrics.MustRegister(cacheKeys)
+	metrics.MustRegister(cacheHits)
+	metrics.MustRegister(cachedMisses)
 }
 
 // HandleMetrics performs a GET request against etcd endpoint and returns '/metrics'.
@@ -101,7 +101,7 @@ func HandleMetrics(mux *http.ServeMux, c *http.Client, eps []string) {
 
 // HandleProxyMetrics registers metrics handler on '/proxy/metrics'.
 func HandleProxyMetrics(mux *http.ServeMux) {
-	mux.Handle(etcdhttp.PathProxyMetrics, promhttp.Handler())
+	mux.Handle(etcdhttp.PathProxyMetrics, metrics.Handler())
 }
 
 func shuffleEndpoints(r *rand.Rand, eps []string) []string {

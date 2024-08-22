@@ -14,7 +14,10 @@
 
 package v3rpc
 
-import "github.com/prometheus/client_golang/prometheus"
+import (
+	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
+)
 
 var (
 	sentBytes = prometheus.NewCounter(prometheus.CounterOpts{
@@ -51,8 +54,8 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(sentBytes)
-	prometheus.MustRegister(receivedBytes)
-	prometheus.MustRegister(streamFailures)
-	prometheus.MustRegister(clientRequests)
+	metrics.MustRegister(sentBytes)
+	metrics.MustRegister(receivedBytes)
+	metrics.MustRegister(streamFailures)
+	metrics.MustRegister(clientRequests)
 }

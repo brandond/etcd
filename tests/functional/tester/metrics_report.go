@@ -19,6 +19,7 @@ import (
 	"sort"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"go.etcd.io/etcd/pkg/v3/metrics"
 )
 
 var (
@@ -62,10 +63,10 @@ var (
 )
 
 func init() {
-	prometheus.MustRegister(caseTotalCounter)
-	prometheus.MustRegister(caseFailedTotalCounter)
-	prometheus.MustRegister(roundTotalCounter)
-	prometheus.MustRegister(roundFailedTotalCounter)
+	metrics.MustRegister(caseTotalCounter)
+	metrics.MustRegister(caseFailedTotalCounter)
+	metrics.MustRegister(roundTotalCounter)
+	metrics.MustRegister(roundFailedTotalCounter)
 }
 
 func printReport() {
